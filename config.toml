@@ -1,0 +1,4 @@
+baseURL = "http://blog.ngiger.dyndns.org"
+languageCode = "en-us"
+title = "Niklaus notes about Elexis and NixOS"
+theme = "ananke"
