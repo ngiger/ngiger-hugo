@@ -1,32 +1,39 @@
 
 
-# Bootstrapping under nixos
+# Bootstrapping Hugo under nixos
+
+See [Getting started](https://gohugo.io/getting-started/quick-start/)
 
 ```fish
-mkdir ngiger-jekyll
-cd ngiger-jekyllo
-nix-shell -p zlib bundler git ruby --command fish
-jekyll new blog
-Running bundle install in /opt/src/ngiger-jekyll/blog4...
-Bundler: Skipping "bundle install" as it fails due to the Nix wrapper.
-Bundler: Please enter the new directory and run the following commands to serve the page:
-Bundler: nix-shell -p bundler --run "bundle install --gemfile=Gemfile --path vendor/cache"
-Bundler: nix-shell -p bundler --run "bundle exec jekyll serve"
-cd blog
-bundler install
-bundle exec jekyll server --port 4050
+mkdir ngiger-hugo
+cd ngiger-hugoo
+nix-shell -p hugo --command fish
+hugo new site .
+git init
+git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
+echo theme = \"ananke\" >> config.toml
+hugo new posts/my-first-post.md
+echo "Something to tell you" >> new posts/my-first-post.md
+hugo server -D # to show drafts, too
+wget http://localhost:1313/index.html
  ```
-## Bootstrappin on nuc
+# Bootstrapping git checkout on nuc
 
-nix-env -iA nixos.ruby.devEnv nixos.gcc nixos.libressl nixos.gnumake nixos.nixUnstable nixos.rubyPackages.ffi
- 1.15.
- 
- nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/d373d80b1207d52621961b16aa4a3438e4f98167.tar.gz
- nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-21.11.tar.gz
- 
- Dann läuft in der nix-shell bundle install und bundle exec jekyll serve
+```bash
+nix-env -iA nixos.git nixos.hugo
+sudo mkdir /var/blog
+sudo chown -R nginx /var/blog
+sudo -u nginx git clone https://github.com/ngiger/ngiger-hugo.git  /var/blog
+cd /var/blog
+sudo -u nginx git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
+sudo -u nginx git clone https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
+```
 
-# TODO: 
+# Publishing the blog via nuc
 
-* https://kevq.uk/how-to-add-search-jekyll
-* https://blog.webjeda.com/jekyll-search/
+Using the followin Nix snippet in the file `features/blog_hugo.nix`
+
+
+```nix
+
+```
