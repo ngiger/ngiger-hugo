@@ -1,6 +1,6 @@
 ---
 title:  "Ideas for improving my NixOS setup"
-date:   2022-02-18 11:17:24 +0100
+date:   2022-02-21 11:17:24 +0100
 draft: false
 tags:
   - nix
@@ -18,3 +18,13 @@ See [nixos-encrypted-secrets](https://christine.website/blog/nixos-encrypted-sec
     [Setting up a private mail server](https://oddco.de/post/private-server/)
 
     [Use ox-hugo?](https://ox-hugo.scripter.co/)
+    
+# Howto monitor my services
+
+* nagios https://github.com/zimbatm/nixos-wiki-test/blob/master/Nagios.md
+* zabbix is the older-generation tool
+* prometheus  is cutting edge
+
+https://www.metricfire.com/blog/prometheus-vs-zabbix/
+https://www.zabbix.com/integrations/windows
+https://sysdig.com/blog/monitoring-windows-prometheus/
